@@ -1,5 +1,8 @@
 import state_pattern.context as context
 import state_pattern.states as states
+from dotenv import load_dotenv
+
+load_dotenv()
 
 myContext = context.Context(states.StateA())
 
