@@ -15,13 +15,24 @@ class State(ABC):
     def taskLoop(self) -> None:
         pass
 
-class StateA(State):
-    def taskLoop(self) -> None:
-        print("Running taskOne in stateA...")
-        self._context.setState(StateB())
+class Yellow(State):
+    def __changeStateCondition(self) -> bool:
+        gpio = self._context.getGpioController()
+        return gpio.get_input(1)
 
-class StateB(State):
     def taskLoop(self) -> None:
-        print("Running taskOne in stateB...")
-        self._context.setState(StateA())
+        if not self.__changeStateCondition():
+            return
 
+        self._context.setState(Red())
+
+class Red(State):
+    def __changeStateCondition(self) -> bool:
+        gpio = self._context.getGpioController()
+        return gpio.get_input(1)
+
+    def taskLoop(self) -> None:
+        if not self.__changeStateCondition():
+            return
+
+        self._context.setState(Yellow())
