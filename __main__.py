@@ -1,13 +1,12 @@
 import state_pattern.context as context
 import state_pattern.states as states
 from dotenv import load_dotenv
-import gpio.gpio_controller
+import time
 
 load_dotenv()
 
-myContext = context.Context(states.StateA())
+mainContext = context.Context(states.OpenCircuit())
 
-myContext.taskTwo()
-myContext.taskOne()
-myContext.taskOne()
-myContext.taskTwo()
+while True:
+  mainContext.taskLoop()
+  time.sleep(0.5)
