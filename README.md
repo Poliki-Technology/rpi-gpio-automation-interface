@@ -18,10 +18,43 @@ This repository provides GPIO interface for RPi. Also implement "State" Design P
 
 - Generally, `gpio` does not need to be modified.
 
-## Creating a virtual env
+## Setup on a new raspberry Pi
+
+### SSH Keygen
+
+```sh
+ssh-keygen
+```
+
+And then bind `.ssh/id_rsa.pub` to your GitHub account.
+
+### Pull Project
+
+```sh
+git clone <your-repo-link>
+```
+
+### Creating a virtual env
 
 ```sh
 python3 -m venv env
 source env/bin/activate
 pip3 install -r requirement.txt
+```
+
+### Set up cronjobs
+
+```sh
+crontab -e
+```
+
+Then select `nano` as your default editor.
+
+Paste command in `cronjobs.txt` and modify to your likings.
+
+### .env variables
+
+```sh
+cp .env.example .env
+nano .env
 ```

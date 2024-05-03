@@ -1,0 +1,1 @@
+@reboot sleep 120 && cd /home/lowie/rpi-gpio-automation-interface && /home/lowie/rpi-gpio-automation-interface/env/bin/python3 /home/lowpie/rpi-gpio-automation-interface/__main__.py
